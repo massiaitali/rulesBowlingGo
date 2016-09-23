@@ -38,7 +38,7 @@ func MaxScore(input []Frame, expectedError error) error {
 
 func StrikeScore(input []Frame, expectedError error) error {
 	Strike := StrikeScoreCalc(input)
-	if Strike == 0 {
+	if Strike == false {
 		return fmt.Errorf("Il n'y a pas de strike")
 	}
 	return nil
@@ -46,7 +46,7 @@ func StrikeScore(input []Frame, expectedError error) error {
 
 func SpareScore(input []Frame, expectedError error) error {
 	Spare := SpareScoreCalc(input)
-	if Spare == 0 {
+	if Spare == false {
 		return fmt.Errorf("Il n'y a pas de spare")
 	}
 	return nil
