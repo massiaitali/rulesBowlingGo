@@ -6,11 +6,13 @@ type Frame struct {
 }
 
 func GetScore(game []Frame) (int, error) {
+
 	score := 0
 	for i := 0; i < len(game); i++ {
 		score = score + game[i].firstThrow + game[i].secondThrow
 	}
 	return score, nil
+
 }
 func GetNbTuple(game []Frame) int {
 	score := len(game)
@@ -40,20 +42,20 @@ func NegatifScoreVerif(game []Frame) bool {
 	return max
 }
 
-func StrikeScoreCalc(game []Frame) bool {
-	max := false
+func StrikeScoreCalc(game []Frame) int {
+	max := 0
 	for i := 0; i < len(game); i++ {
 		if game[i].firstThrow == 10 {
-			max = true
+			max = max + 1
 		}
 	}
 	return max
 }
-func SpareScoreCalc(game []Frame) bool {
-	max := false
+func SpareScoreCalc(game []Frame) int {
+	max := 0
 	for i := 0; i < len(game); i++ {
 		if game[i].firstThrow+game[i].secondThrow == 10 {
-			max = true
+			max = max + 1
 		}
 	}
 	return max
