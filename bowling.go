@@ -42,20 +42,26 @@ func NegatifScoreVerif(game []Frame) bool {
 	return max
 }
 
-func StrikeScoreCalc(game []Frame) bool {
-	max := false
+func StrikeScoreCalc(game []Frame) int {
+	max := 0
 	for i := 0; i < len(game); i++ {
 		if game[i].firstThrow == 10 {
-			max = true
+			if i+1 == len(game) {
+				break
+			}
+			max = max + game[i+1].firstThrow + game[i+1].secondThrow
 		}
 	}
 	return max
 }
-func SpareScoreCalc(game []Frame) bool {
-	max := false
+func SpareScoreCalc(game []Frame) int {
+	max := 0
 	for i := 0; i < len(game); i++ {
 		if game[i].firstThrow+game[i].secondThrow == 10 {
-			max = true
+			if i+1 == len(game) {
+				break
+			}
+			max = max + game[i+1].firstThrow
 		}
 	}
 	return max
