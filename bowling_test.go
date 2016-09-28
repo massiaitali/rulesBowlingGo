@@ -12,6 +12,7 @@ func scoreChecker(input []Frame, expectedScore int, expectedError error) error {
 	}
 	return nil
 }
+
 func NbScore(input []Frame, expectedScore int, expectedError error) error {
 	nbTuple := GetNbTuple(input)
 	if nbTuple != expectedScore {
@@ -53,42 +54,47 @@ func SpareScore(input []Frame, expectedError error) error {
 }
 
 func TestScore(t *testing.T) {
-	input := []Frame{{6, 4}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}}
-	expected := 72
+	input := []Frame{{6, 4}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 5}, {1, 1}, {5, 3}}
+	expected := 98
 	if err := scoreChecker(input, expected, nil); err != nil {
 		t.Fatalf("%+v\n", err)
 	}
 }
 
 func TestNbTuple(t *testing.T) {
-	input := []Frame{{6, 4}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}}
+	input := []Frame{{6, 4}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 5}, {1, 1}, {5, 3}}
 	expected := 10
+	if input[9].firstThrow == 10 {
+		expected = 12
+	} else if input[9].firstThrow+input[9].secondThrow == 10 {
+		expected = 11
+	}
 	if err := NbScore(input, expected, nil); err != nil {
 		t.Fatalf("%+v\n", err)
 	}
 }
 
 func TestPositif(t *testing.T) {
-	input := []Frame{{6, 4}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}}
+	input := []Frame{{6, 4}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 5}, {1, 1}, {5, 3}}
 	if err := PositifScore(input, nil); err != nil {
 		t.Fatalf("%+v\n", err)
 	}
 }
 
 func TestMaxScore(t *testing.T) {
-	input := []Frame{{6, 4}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}}
+	input := []Frame{{6, 4}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 5}, {1, 1}, {5, 3}}
 	if err := MaxScore(input, nil); err != nil {
 		t.Fatalf("%+v\n", err)
 	}
 }
 func TestStrike(t *testing.T) {
-	input := []Frame{{6, 4}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}}
+	input := []Frame{{6, 4}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 5}, {1, 1}, {5, 3}}
 	if err := StrikeScore(input, nil); err != nil {
 		t.Fatalf("%+v\n", err)
 	}
 }
 func TestSpare(t *testing.T) {
-	input := []Frame{{6, 4}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}}
+	input := []Frame{{6, 4}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 0}, {1, 2}, {10, 5}, {1, 1}, {5, 3}}
 	if err := SpareScore(input, nil); err != nil {
 		t.Fatalf("%+v\n", err)
 	}

@@ -6,8 +6,9 @@ type Frame struct {
 }
 
 func GetScore(game []Frame) (int, error) {
-
-	score := 0
+	Strike := StrikeScoreCalc(game)
+	Spare := SpareScoreCalc(game)
+	score := Strike + Spare
 	for i := 0; i < len(game); i++ {
 		score = score + game[i].firstThrow + game[i].secondThrow
 	}
